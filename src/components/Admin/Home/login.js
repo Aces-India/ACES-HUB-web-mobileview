@@ -17,7 +17,7 @@ const Login = () => {
     };
 
     axios
-      .post("https://aces-hackathon-developement.onrender.com/api/Adminlogin", userData)
+      .post("https://s-hub-backend.onrender.com/api/Adminlogin", userData)
       .then((response) => {
         setEmail(response.data.email);
         setBtn(false);
@@ -45,13 +45,13 @@ const Login = () => {
 
     axios
       .post(
-        "https://aces-hackathon-developement.onrender.com/api/verifyAdminlogin",
+        "https://s-hub-backend.onrender.com/api/verifyAdminlogin",
         userDetails
       )
       .then((response) => {
         const { token } = response.data;
         localStorage.setItem("jwtToken", token);
-        navigate("/dashboard");
+        navigate("/dashboard"); 
       })
       .catch((response) => {
         setError(response.response.data);

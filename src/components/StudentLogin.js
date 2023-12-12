@@ -61,9 +61,9 @@ const Main = () => {
     setLoading(true);
     try {
       if (isLogin) {
-        await axios.post('https://aces-hackathon-developement.onrender.com/api/login', { email });
+        await axios.post('https://s-hub-backend.onrender.com/api/login', { email });
       } else {
-        await axios.post('https://aces-hackathon-developement.onrender.com/api/registeruser', { name, email, phone });
+        await axios.post('https://s-hub-backend.onrender.com/api/registeruser', { name, email, phone });
       }
       alert('OTP sent to your email');
       setOtpSent(true);
@@ -86,17 +86,18 @@ const Main = () => {
 
   const verifyOtpAndRegister = async () => {
     try {
-      const response = await axios.post('https://aces-hackathon-developement.onrender.com/api/verify-register', {
+      const response = await axios.post('https://s-hub-backend.onrender.com/api/verify-register', {
         email,
-        otp
+        otp,
+        name, 
+        phone
       });
       console.log(response, 'this is response');
       await storeToken(response.data.token);
       setIsLoggedIn(true);
       localStorage.setItem('isLoggedIn', 'true');
       alert('Registration successful');
-      // Replace the following line with the navigation code for React JS
-      // history.push('/home'); // Use the appropriate navigation mechanism for React JS
+     
       Navigate('/Home');
     } catch (err) {
       console.error(err);
@@ -115,7 +116,7 @@ const Main = () => {
 
   const verifyOtpAndLogin = async () => {
     try {
-      const response = await axios.post('https://aces-hackathon-developement.onrender.com/api/verify-login', {
+      const response = await axios.post('https://s-hub-backend.onrender.com/api/verify-login', {
         email,
         otp
       });

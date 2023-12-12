@@ -13,7 +13,7 @@ const Registration = ({ onSuccessfulRegistration, onToggleForm }) => {
   const sendOtp = async () => {
     setLoading(true);
     try {
-      await axios.post('https://aces-hackathon.onrender.com/api/registeruser', { name, email, phone });
+      await axios.post('https://s-hub-backend.onrender.com/api/registeruser', { name, email, phone });
       alert('OTP sent to your email');
       setOtpSent(true);
     } catch (err) {
@@ -26,7 +26,7 @@ const Registration = ({ onSuccessfulRegistration, onToggleForm }) => {
 
   const verifyOtpAndRegister = async () => {
     try {
-      await axios.post('https://aces-hackathon.onrender.com/api/verify-register', {
+      await axios.post('https://s-hub-backend.onrender.com/api/verify-register', {
         email,
         otp
       });

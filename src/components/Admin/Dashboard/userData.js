@@ -17,7 +17,7 @@ const UsersData = () => {
   const fetchUsers = () => {
     setDisplay(true);
     axios
-      .get("https://aces-hackathon.onrender.com/api/getUsers")
+      .get("https://s-hub-backend.onrender.com/api/getUsers")
       .then((res) => setUsers(res.data));
   };
 
@@ -25,7 +25,7 @@ const UsersData = () => {
     setDisplay(false);
 
     axios
-      .get("https://aces-hackathon.onrender.com/api/getTeamDetails")
+      .get("https://s-hub-backend.onrender.com/api/getTeamDetails")
       .then((res) => {
         setTeam(res.data);
         setFilteredUsers(res.data);

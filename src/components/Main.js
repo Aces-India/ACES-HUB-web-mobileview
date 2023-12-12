@@ -12,25 +12,39 @@ const Main = () => {
 
   return (
     <>
-      <div className="main-login">
-        <div className="loginContainer">
-          <div className="topSection">
-            <div className="logoContainer">
-              <img src={companyLogo} alt="Logo" className="logo" />
-            </div>
-            <div className="roleSelector">
-             
-              <select value={role} onChange={(e) => setRole(e.target.value)}>
-                <option value="student">Student</option>
-                <option value="Admin">Admin</option>
-              </select>
-            </div>
-          </div>
-          {role === "student" ? <StudentLogin /> : <Login />}
+    <div className="main-login">
+    <div className="loginContainer">
+      <div className="topSection">
+        <div className="logoContainer">
+          <img src={companyLogo} alt="Logo" className="logo" />
+        </div>
+        <div className="roleSelector">
+          <label>
+            <input
+              type="radio"
+              value="student"
+              checked={role === 'student'}
+              onChange={() => setRole('student')}
+            />
+            Student
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              value="admin"
+              checked={role === 'admin'}
+              onChange={() => setRole('admin')}
+            />
+            Admin
+          </label>
         </div>
       </div>
-    </>
-  );
+      {role === "student" ? <StudentLogin /> : <Login />}
+    </div>
+  </div>
+</>
+);
 };
 
 export default Main;
