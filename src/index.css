@@ -23,11 +23,10 @@ code {
   height: 60px;
   background-color: #213966;
 }
-.buttonHeader {
-  margin-left: 30px;
-}
+
 .btn {
   margin: 10px;
+  
 }
 .BlogMain {
   display: flex;
@@ -106,7 +105,7 @@ code {
 
 .icon {
   width: 50px;
-  height: 50px;
+  /* height: 50px; */
 }
 
 .label {
@@ -573,6 +572,7 @@ input[type="file"] {
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  height: 100%;
 }
 .logo_logo {
   width: 100%;
@@ -594,13 +594,13 @@ input[type="file"] {
   background-color: #ffff;
   height: 68%;
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 5px;
   margin-top: 80px;
   width: 30%;
   margin-left: 20%;
   padding: 25px;
 }
-.formInput {
+/* .formInput {
   padding: 5px;
   background-color: #f0f0f0;
   color: #1f1f1f;
@@ -609,7 +609,7 @@ input[type="file"] {
   border: 1px solid #ccc;
   font-family: "Montserrat", sans-serif;
   width: 100%;
-}
+} */
 
 .LoginForm {
   display: flex;
@@ -625,7 +625,7 @@ input[type="file"] {
 }
 .sidebarlinks {
   align-items: center;
-  margin-top: 100px;
+  margin-top: 10px;
 }
 .MainDashboard {
   display: flex;
@@ -637,9 +637,9 @@ input[type="file"] {
   background-color: rgb(255, 255, 255);
   flex-direction: row;
   justify-content: space-between;
-  height: 92vh;
-  width: 1200px;
-  margin-left: 30px;
+  height: 94vh;
+  width: 1280px;
+  margin-left: 20px;
   border: 1px solid black;
   padding: 10px;
 }
@@ -670,15 +670,14 @@ input[type="file"] {
     padding-bottom: 8px; */
 }
 .active {
-  border: 2px solid #fff;
+  
   color: #fff;
-  /* background-color: #7696D0; */
   border-radius: 15px;
-  /* padding: 14px 10px; */
   padding-top: 8px;
-  padding-bottom: 8px;
+  padding-bottom: 5px;
 }
-.formBtn {
+
+/* .formBtn {
   width: 120px;
   height: 40px;
   background-color: #1a73e8;
@@ -686,7 +685,7 @@ input[type="file"] {
   font-weight: 500;
   border-radius: 10px;
   cursor: pointer;
-}
+} */
 .modalStyles {
   background-color: #ffffff;
   width: 400px;
@@ -772,3 +771,213 @@ tr {
 .userDataBtn:hover {
   color: #c4c4c4;
 }
+.login-label {
+  display: flex;
+  flex-direction: row;
+  
+  margin-bottom: -95px; 
+  margin-left: 720px;
+}
+
+.login-label label {
+  margin-right: 60px; 
+}
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.main-login {
+
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2; /* Add your preferred background color */
+}
+.loginContainer {
+  display: flex;
+ 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust the height as needed */
+  background-color: #213966;
+  /* color: #fff; */
+}
+
+.logoContainer {
+  text-align: center;
+ 
+  margin-right: 50px;
+}
+
+
+.formContainer {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 150px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.button-Container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loginbutton {
+  width: 100%;
+  font-size: 15px !important;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 30px;
+  background-color: #f1f1f1;
+}
+
+.spacing {
+  width: 10px;
+}
+
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingBox {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Add this to your existing CSS file */
+
+.topSection {
+  
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.roleSelector {
+margin-top: 30px;
+margin-left: 155px;
+  align-items: center;
+  width: 40%;
+  margin-bottom: -40px;
+}
+
+.login-label {
+  margin-right: 10px;
+}
+
+.logo {
+  width: 240px; /* Adjust the width as needed */
+  height: 60px;
+}
+
+/* Add this to your existing CSS file */
+
+.loginHeader {
+  margin-left: -165px;
+  font-weight: 500;
+}
+
+.formInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formBtnContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.formBtn {
+  width: 48%;
+  height: 40px;
+  background-color: #1a73e8;
+  color: white;
+  font-weight: 400;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+/* Add this to your CSS file */
+.buttonHeader {
+  display: flex;
+  gap: 20px;
+}
+
+nav {
+  display: flex;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: #ff0000;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  border: none;
+}
+
+nav a:hover::after,
+nav a:focus::after,
+nav a:active::after {
+  width: 100%;
+}
+
+/* Active link style */
+nav a.active::after {
+  width: 100%;
+  border: none;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+

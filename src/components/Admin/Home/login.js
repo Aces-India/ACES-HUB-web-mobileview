@@ -1,31 +1,24 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { GlobalContext } from "../../GlobalProvider";
 import { GlobalContext } from "../../../GlobalProvider";
 
 const Login = () => {
   const { user, setUser, setEmail, email } = useContext(GlobalContext);
-  // const [user, setUser] = useState({
-  //   email: "",
-  // });
-  const [verifyOtp, setVerifyOtp] = useState();
   const [otp, setOtp] = useState();
   const [btn, setBtn] = useState(true);
   const [error, setError] = useState();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const userData = {
       email: user.email,
     };
-    var x = document.getElementById("otp");
-    var y = document.getElementById("loginBtn");
 
     axios
-      .post("https://aces-hackathon.onrender.com/api/Adminlogin", userData)
+      .post("https://aces-hackathon-developement.onrender.com/api/Adminlogin", userData)
       .then((response) => {
-        // setVerifyOtp(response.data.otp);
         setEmail(response.data.email);
         setBtn(false);
         setError("");
@@ -42,15 +35,17 @@ const Login = () => {
       [id]: value,
     });
   };
+
   const handleVerifyChange = (e) => {
     e.preventDefault();
     const userDetails = {
       email: email,
       otp: otp,
     };
+
     axios
       .post(
-        "https://aces-hackathon.onrender.com/api/verifyAdminlogin",
+        "https://aces-hackathon-developement.onrender.com/api/verifyAdminlogin",
         userDetails
       )
       .then((response) => {
@@ -61,25 +56,12 @@ const Login = () => {
       .catch((response) => {
         setError(response.response.data);
       });
-    // if (otp === verifyOtp) {
-    //   navigate("/dashboard");
-    // } else {
-    //   alert("incorrect otp");
-    // }
   };
+
   return (
     <>
-      <div className="LoginPage">
-        <div className="">
-          <h4
-            style={{
-              marginLeft: "-165px",
-              fontWeight: "500",
-            }}
-          >
-            Admin Login
-          </h4>
-        </div>
+      <div className="formContainer">
+        
         <form className="LoginForm">
           {btn ? (
             <input
@@ -102,40 +84,19 @@ const Login = () => {
             />
           )}
           <p style={{ color: "red" }}>
-            {error && (
-              <>
-                <small>{error}</small>
-              </>
-            )}
-          </p>{" "}
-          <div
-            style={{
-              display: "flex",
-              marginTop: "10px",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+            {error && <small>{error}</small>}
+          </p>
+          <div className="formBtnContainer">
             {btn ? (
               <button
                 className="formBtn"
                 onClick={handleSubmit}
-                id="loginBtn"
-                style={{
-                  width: "120px",
-                  height: "40px",
-                  backgroundColor: "#1A73E8",
-                  color: "white",
-                  fontWeight: "400",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                }}
+                style={{backgroundColor:"#213966"}}
               >
                 Login
               </button>
             ) : (
               <button
-                id="verifyBtn"
                 className="formBtn"
                 onClick={handleVerifyChange}
               >
@@ -148,4 +109,5 @@ const Login = () => {
     </>
   );
 };
+
 export default Login;

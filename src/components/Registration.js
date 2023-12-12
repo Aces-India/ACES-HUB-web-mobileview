@@ -122,7 +122,7 @@ const [showLoader] = useState(false);
             formData.append('file', selectedFile);
           }
     
-          const response = await axios.post("https://aces-hackathon.onrender.com/api/register", formData, {
+          const response = await axios.post("https://s-hub-backend.onrender.com/api/register", formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
@@ -134,7 +134,7 @@ const [showLoader] = useState(false);
           alert("Registration Successful. Thank you for registering for Aces Hackathon. Happy Coding!");
     
            // Navigate to the home screen
-           navigate('/');
+           navigate('/Home');
         } catch (error) {
           console.error('Error submitting form:', error);
           alert("Registration Failed. An error occurred during registration.");
