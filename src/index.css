@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(../src/assets/12.jpg);
+  /* background-image: url(../src/assets/12.jpg); */
+  background-color: #ececec;
 }
 
 code {
@@ -30,8 +31,8 @@ code {
   margin: 10px;
 }
 .BlogMain {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-top: "30px";
 }
 .company-logo {

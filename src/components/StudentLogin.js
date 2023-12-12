@@ -5,7 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../GlobalProvider";
 
 const StudentLogin = () => {
-  const { user, setUser, setEmail, email } = useContext(GlobalContext);
+  const {
+    user,
+    setUser,
+    setEmail,
+    email,
+    setUSerName,
+    userName,
+    userId,
+    setUserId,
+  } = useContext(GlobalContext);
   const [verifyOtp, setVerifyOtp] = useState();
   const [otp, setOtp] = useState();
   const [btn, setBtn] = useState(true);
@@ -18,9 +27,10 @@ const StudentLogin = () => {
     };
     var x = document.getElementById("otp");
     var y = document.getElementById("loginBtn");
-
+    console.log(userData);
     axios
-      .post("https://aces-hackathon.onrender.com/api/login", userData)
+      .post("https://s-hub-backend.onrender.com/api/login", userData)
+      // .post("http://localhost:5001/api/login", userData)
       .then((response) => {
         // setVerifyOtp(response.data.otp);
         setEmail(response.data.email);
@@ -46,11 +56,15 @@ const StudentLogin = () => {
       otp: otp,
     };
     axios
-      .post("https://aces-hackathon.onrender.com/api/verify-login", userDetails)
+      .post("https://s-hub-backend.onrender.com/api/verify-login", userDetails)
       .then((response) => {
         const { token } = response.data;
         localStorage.setItem("jwtToken", token);
         navigate("/Home");
+        console.log(response);
+        setUSerName(response.data.name);
+        setEmail(response.data.email);
+        setUserId(response.data.user_id);
       })
       .catch((response) => {
         setError(response.response.data);

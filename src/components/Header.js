@@ -11,7 +11,7 @@ const Header = () => {
         <img src={companyLogo} alt="Company Logo" className="company-logo" />
         {/* Add other header content here */}
         <div className="buttonHeader">
-          <button className="btn" onClick={() => navigate("/")}>
+          <button className="btn" onClick={() => navigate("/Home")}>
             Home
           </button>
           <button className="btn" onClick={() => navigate("/Blogs")}>

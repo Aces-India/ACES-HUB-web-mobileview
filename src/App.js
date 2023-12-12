@@ -25,6 +25,7 @@ function App() {
       <Route path="/newBlog" element={<WriteBlog />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/Home" element={<Home />} />
+      <Route exact path="/Blogs/:blog" element={<BlogMain />} />
     </Routes>
   );
 }

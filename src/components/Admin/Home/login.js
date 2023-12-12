@@ -56,7 +56,7 @@ const Login = () => {
       .then((response) => {
         const { token } = response.data;
         localStorage.setItem("jwtToken", token);
-        navigate("/dashboard");
+        navigate("/dashboard"); 
       })
       .catch((response) => {
         setError(response.response.data);

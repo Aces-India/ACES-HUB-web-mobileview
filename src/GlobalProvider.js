@@ -8,10 +8,26 @@ export const GlobalProvider = ({ children }) => {
     email: "",
   });
   const [email, setEmail] = useState();
+  const [userName, setUSerName] = useState();
+  const [userId, setUserId] = useState();
   const [form, setForm] = useState();
+  const [posts, setPosts] = useState();
+  const [title, setTitle] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [textareaValue, setTextareaValue] = useState("");
   return (
     <GlobalContext.Provider
       value={{
+        selectedImage,
+        setSelectedImage,
+        textareaValue,
+        setTextareaValue,
+        title,
+        setTitle,
+        userId,
+        setUserId,
+        userName,
+        setUSerName,
         blogModal,
         setBlogModal,
         blogpageView,
@@ -22,6 +38,8 @@ export const GlobalProvider = ({ children }) => {
         setUser,
         form,
         setForm,
+        posts,
+        setPosts,
       }}
     >
       {children}
