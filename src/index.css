@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(../src/assets/12.jpg);
+  /* background-image: url(../src/assets/12.jpg); */
+  background-color: #ececec;
 }
 
 code {
@@ -29,8 +30,8 @@ code {
   
 }
 .BlogMain {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-top: "30px";
 }
 .company-logo {
@@ -810,7 +811,7 @@ select {
 .logoContainer {
   text-align: center;
  
-  margin-right: 50px;
+  margin-right: 0px;
 }
 
 
@@ -819,10 +820,11 @@ select {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  height: 150px;
+  height: auto;
 }
 
 .input {
+  display: flex;
   width: 100%;
   padding: 10px;
   margin-top: 10px;
@@ -883,11 +885,12 @@ select {
 }
 
 .roleSelector {
+  color: #ffff;
 margin-top: 30px;
-margin-left: 155px;
+margin-left: 80px;
   align-items: center;
-  width: 40%;
-  margin-bottom: -40px;
+  
+  margin-bottom: -15px;
 }
 
 .login-label {
@@ -938,9 +941,9 @@ margin-left: 155px;
   gap: 20px;
 }
 
-nav {
+/* nav {
   display: flex;
-}
+} */
 
 nav a {
   color: #fff;
