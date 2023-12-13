@@ -43,7 +43,6 @@ const WriteBlog = () => {
       })
       .then((response) => {
         alert("Submitted Successfully");
-        console.log(response, "rsponse");
         setTextareaValue("");
         setTitle("");
         setSelectedImage("");
@@ -56,7 +55,7 @@ const WriteBlog = () => {
     <>
       {/* <Header /> */}
       {/* <input type="file" onChange={handleImageChange} accept="image/*" /> */}
-      <label
+      {/* <label
         style={{ marginLeft: "30px", marginTop: "10px", cursor: "pointer" }}
       >
         <input
@@ -65,7 +64,8 @@ const WriteBlog = () => {
           onChange={(e) => handleImageChange(e)}
         />
         <FaImage />
-      </label>
+      </label> */}
+
       <div
         style={{
           width: "900px",
@@ -73,7 +73,7 @@ const WriteBlog = () => {
           border: "1px solid black",
           marginLeft: "30px",
           display: "block",
-          marginTop: "-5px",
+          marginTop: "30px",
           justifyContent: "flex-start",
           padding: "10px",
         }}
@@ -120,8 +120,35 @@ const WriteBlog = () => {
               />
             </div>
           )}
-          <button className="btn" onClick={handlePost}>
+          <button
+            className="btn"
+            style={{
+              cursor: "pointer",
+              width: "10%",
+              border: "1px solid black",
+              borderRadius: "8px",
+            }}
+            onClick={handlePost}
+          >
             Post
+          </button>
+          <button className="btn" onClick={handlePost}>
+            <label
+              style={{
+                margin: "10px",
+                marginTop: "10px",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageChange(e)}
+              />
+              <FaImage />
+              Add Image
+            </label>
           </button>
         </Scrollbars>
 

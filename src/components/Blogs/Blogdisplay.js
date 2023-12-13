@@ -8,7 +8,6 @@ const Blogdisplay = (index) => {
     textareaValue,
     setTextareaValue,
   } = useContext(GlobalContext);
-  console.log(title);
   return (
     <>
       <div

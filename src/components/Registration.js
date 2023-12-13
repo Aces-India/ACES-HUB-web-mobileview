@@ -87,7 +87,7 @@ const [showLoader] = useState(false);
           setShowSpinner(true);
           // Check for empty fields
           if (!teamName || !teamLeaderName || !college || !branch || !rollNumber || !email || !mobileNumber || !track || !selectedFile) {
-            console.log('Form values:', { teamName, teamLeaderName, college, branch, rollNumber, email, mobileNumber, track, selectedFile });
+            // console.log('Form values:', { teamName, teamLeaderName, college, branch, rollNumber, email, mobileNumber, track, selectedFile });
             alert('Please fill in all fields. Check if there are empty or invalid fields.');
             return;
           }
@@ -128,7 +128,7 @@ const [showLoader] = useState(false);
             },
           });
     
-          console.log(response.data); // Handle the response as needed
+          // console.log(response.data); // Handle the response as needed
     
           // Display success alert
           alert("Registration Successful. Thank you for registering for Aces Hackathon. Happy Coding!");
@@ -136,7 +136,6 @@ const [showLoader] = useState(false);
            // Navigate to the home screen
            navigate('/Home');
         } catch (error) {
-          console.error('Error submitting form:', error);
           alert("Registration Failed. An error occurred during registration.");
         } finally {
           // Set loading and modal visibility back to false when the submission is complete (whether successful or not)
@@ -144,16 +143,7 @@ const [showLoader] = useState(false);
           setShowSpinner(false);
         }
     
-        // Log additional information if needed
-        console.log('Team Name:', teamName);
-        console.log('Team Leader Name:', teamLeaderName);
-        console.log('college', college);
-        console.log('branch', branch);
-        console.log('rollNumber', rollNumber);
-        console.log('email', email);
-        console.log('mobileNumber', mobileNumber);
-        console.log('track', track);
-        console.log('Selected File:', selectedFile);
+      
       };
 
   const renderStep = () => {
@@ -302,7 +292,6 @@ const [showLoader] = useState(false);
  
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-console.log(event.target.files[0])
     if (file) {
      
       setSelectedFile(file);

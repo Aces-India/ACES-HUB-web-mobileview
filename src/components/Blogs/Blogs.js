@@ -28,14 +28,12 @@ const Blogs = () => {
   };
   const fetchBlogs = () => {
     axios.get("https://s-hub-backend.onrender.com/api/post").then((res) => {
-      console.log(res);
       setPosts(res.data.posts);
     });
   };
-  console.log(posts);
+
   const handlePosts = (index) => {
     setBlogPageView("blogdisplay");
-    console.log("first", posts[index]);
     setTitle(posts[index].post_title);
     setSelectedImage(posts[index].post_img);
     setTextareaValue(posts[index].post_msg);
@@ -101,7 +99,7 @@ const Blogs = () => {
             Fetch Blogs
           </button>
         </div>
-        {posts?.map((user, index) => (
+        {posts?.reverse().map((user, index) => (
           <div
             className="teambox"
             key={index}

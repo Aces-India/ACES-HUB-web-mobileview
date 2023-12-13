@@ -20,11 +20,9 @@ const UserDetails = () => {
   const handlePostPage = () => {
     setBlogPageView(false);
     axios.get("https://s-hub-backend.onrender.com/api/post").then((res) => {
-      console.log(res);
       setPosts(res.data.posts);
     });
   };
-  console.log(userName);
   return (
     <>
       <div
