@@ -27,7 +27,6 @@ code {
 
 .btn {
   margin: 10px;
-  
 }
 .BlogMain {
   display: grid;
@@ -671,7 +670,6 @@ input[type="file"] {
     padding-bottom: 8px; */
 }
 .active {
-  
   color: #fff;
   border-radius: 15px;
   padding-top: 8px;
@@ -689,14 +687,15 @@ input[type="file"] {
 } */
 .modalStyles {
   background-color: #ffffff;
-  width: 400px;
-  height: 320px;
+  width: 550px;
+  height: 400px;
   position: relative;
   top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
   margin-right: 50%;
+  margin-bottom: 130px;
   transform: translate(-50%, -50%);
   border: 1px solid black;
   border-radius: 10px;
@@ -775,13 +774,13 @@ tr {
 .login-label {
   display: flex;
   flex-direction: row;
-  
-  margin-bottom: -95px; 
+
+  margin-bottom: -95px;
   margin-left: 720px;
 }
 
 .login-label label {
-  margin-right: 60px; 
+  margin-right: 60px;
 }
 select {
   width: 100%;
@@ -791,7 +790,6 @@ select {
   border-radius: 4px;
 }
 .main-login {
-
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -799,7 +797,7 @@ select {
 }
 .loginContainer {
   display: flex;
- 
+
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -810,17 +808,16 @@ select {
 
 .logoContainer {
   text-align: center;
- 
+
   margin-right: 0px;
 }
-
 
 .formContainer {
   background-color: #ffffff;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  height: auto;
+  height: 150px;
 }
 
 .input {
@@ -878,7 +875,6 @@ select {
 /* Add this to your existing CSS file */
 
 .topSection {
-  
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -886,10 +882,10 @@ select {
 
 .roleSelector {
   color: #ffff;
-margin-top: 30px;
-margin-left: 80px;
+  margin-top: 30px;
+  margin-left: 80px;
   align-items: center;
-  
+
   margin-bottom: -15px;
 }
 
@@ -934,7 +930,6 @@ margin-left: 80px;
   cursor: pointer;
 }
 
-
 /* Add this to your CSS file */
 .buttonHeader {
   display: flex;
@@ -953,7 +948,7 @@ nav a {
 }
 
 nav a::after {
-  content: '';
+  content: "";
   display: block;
   width: 0;
   height: 3px;
@@ -982,5 +977,3 @@ nav a.active::after {
   display: flex;
   align-items: center;
 }
-
-

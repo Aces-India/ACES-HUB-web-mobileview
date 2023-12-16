@@ -17,7 +17,6 @@ const Registration = ({ onSuccessfulRegistration, onToggleForm }) => {
       alert('OTP sent to your email');
       setOtpSent(true);
     } catch (err) {
-      console.error(err);
       alert('Error sending OTP');
     } finally {
       setLoading(false);

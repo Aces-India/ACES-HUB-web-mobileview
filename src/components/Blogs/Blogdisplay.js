@@ -1,13 +1,48 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../GlobalProvider";
-const Blogdisplay = (index) => {
+import { FaRegUserCircle } from "react-icons/fa";
+import axios from "axios";
+
+const Blogdisplay = ({ post }) => {
   const {
     title,
     selectedImage,
     setSelectedImage,
-    textareaValue,
-    setTextareaValue,
+    userId,
+    comments,
+    postDisplay,
+    setComments,
   } = useContext(GlobalContext);
+  const [commentText, setCommentText] = useState();
+  const postComment = () => {
+    const obj = {
+      user_id: userId,
+      comnt_msg: commentText,
+    };
+    axios
+      .post(
+        `https://s-hub-backend.onrender.com/api/post/${postDisplay?.post_id}/comment`,
+        obj
+      )
+      .then((res) => {
+        alert("Comment Successfully");
+        setCommentText("");
+      });
+  };
+
+  useEffect(() => {
+    // Fetch comments whenever the component mounts or commentText changes
+    axios
+      .get(
+        `https://s-hub-backend.onrender.com/api/post/${postDisplay.post_id}/comment`
+      )
+      .then((res) => {
+        setComments(res.data.reverse());
+      })
+      .catch((error) => {
+        console.error("Error fetching comments:", error);
+      });
+  }, [commentText, postDisplay.post_id]);
   return (
     <>
       <div
@@ -22,7 +57,9 @@ const Blogdisplay = (index) => {
           padding: "10px",
         }}
       >
-        <h1 style={{ fontSize: "30px", fontWeight: "bolder" }}>{title}</h1>
+        <h1 style={{ fontSize: "30px", fontWeight: "bolder" }}>
+          {postDisplay?.post_title}
+        </h1>
         <p
           style={{
             fontSize: "20px",
@@ -32,13 +69,139 @@ const Blogdisplay = (index) => {
             lineHeight: "35px",
           }}
         >
-          {textareaValue}
+          {postDisplay?.post_msg}
         </p>
         <div>
           <img
-            src={selectedImage}
+            src={postDisplay?.post_img}
             style={{ width: "400px", height: "400px", marginLeft: "240px" }}
           />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+
+            fontSize: "25px",
+            borderTop: "1px solid black",
+            borderBottom: "1px solid black",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              alignContent: "center",
+            }}
+          >
+            <FaRegUserCircle />
+            {postDisplay?.user_id?.name}
+          </div>
+          <br></br>
+          <div style={{ marginLeft: "90px" }}>
+            <input
+              className="formInput"
+              placeholder="Add comment..."
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              style={{
+                width: "500px",
+                margin: "10px",
+                height: "40px",
+                border: "2px solid black",
+              }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+              fontSize: "20px",
+              border: "1px solid black",
+              borderRadius: "10px",
+              padding: "6px",
+              marginTop: "4px",
+              height: "30px",
+              width: "10%",
+              color: "#fff",
+              background: "#007acc",
+              marginLeft: "60px",
+              cursor: "pointer",
+            }}
+            onClick={postComment}
+          >
+            Post
+          </div>
+        </div>
+        <div>
+          {comments &&
+            comments?.map((comment, index) => {
+              const formattedDate = new Date(
+                comment.commented_at
+              ).toLocaleDateString();
+              const formattedTime = new Date(
+                comment.commented_at
+              ).toLocaleTimeString();
+              const dateTimeString = `${formattedDate}  ${formattedTime}`;
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    alignContent: "center",
+                  }}
+                  key={comment.id}
+                >
+                  <FaRegUserCircle size={40} />
+
+                  <div
+                    style={{
+                      background: "#b3b3cc",
+                      width: "100%",
+                      border: "2px solid black",
+                      margin: "10px",
+                      fontSize: "20px",
+                      display: "grid",
+                      gridTemplateColumns: "1fr,1fr",
+
+                      justifyContent: "left",
+                      alignItems: "left",
+                      alignContent: "left",
+                      borderRadius: "8px",
+                      marginLeft: "10px",
+                      padding: "8px",
+                    }}
+                  >
+                    <div
+                      style={
+                        {
+                          // display: "flex",
+                          // flexDirection: "column",
+                          // justifyContent: "center",
+                          // alignItems: "center",
+                          // alignContent: "center",
+                          // background: "black",
+                        }
+                      }
+                    >
+                      <small style={{ fontWeight: "bolder", fontSize: "25px" }}>
+                        {comment?.user_id?.name}
+                      </small>
+                      <br></br>
+                      {comment?.comment_msg}
+                    </div>
+                    <small style={{ marginLeft: "600px" }}>
+                      {dateTimeString}
+                    </small>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </>

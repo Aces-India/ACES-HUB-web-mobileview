@@ -15,9 +15,21 @@ export const GlobalProvider = ({ children }) => {
   const [title, setTitle] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [textareaValue, setTextareaValue] = useState("");
+  const [commentModal, setCommentModal] = useState(false);
+  const [comments, setComments] = useState();
+  const [postDisplay, setPostDisplay] = useState();
+  const [loggedInUserDetails, setLoggedInUserDetails] = useState();
   return (
     <GlobalContext.Provider
       value={{
+        loggedInUserDetails,
+        setLoggedInUserDetails,
+        postDisplay,
+        setPostDisplay,
+        comments,
+        setComments,
+        commentModal,
+        setCommentModal,
         selectedImage,
         setSelectedImage,
         textareaValue,

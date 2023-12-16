@@ -1,23 +1,48 @@
-import React, { useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { useNavigate } from 'react-router-dom';
-import '../index.css';
-import Header from './Header';
+import React, { useContext, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from "react-router-dom";
+import "../index.css";
+import Header from "./Header";
+import { GlobalContext } from "../GlobalProvider";
 
 const Box = ({ label, icon, screen, id }) => {
-  const backgroundColors = ['#17a2b8', '#FF5733', '#7f19e6', '#FF3357', '#33FF57', '#ffc107'];
+  let navigate = useNavigate();
+  const backgroundColors = [
+    "#17a2b8",
+    "#FF5733",
+    "#7f19e6",
+    "#FF3357",
+    "#33FF57",
+    "#ffc107",
+  ];
   // #FF5733 33FF57
   const backgroundColor = backgroundColors[id % backgroundColors.length];
 
-  const handleBoxPress = () => {
-    window.location.href = `/${screen}`;
+  const handleBoxPress = (e) => {
+    e.preventDefault();
+    // window.location.href = `/${screen}`; //problem creator state getting update automatically try avoiding this
+    navigate(`/${screen}`);
   };
 
   return (
-    <div style={{ width: '260px', margin: '10px', padding: '8px', border: '1px solid #ccc', textAlign: 'center', borderRadius: '10px', backgroundColor , color:'#fff', fontSize:'18px', fontWeight:'bold' }} onClick={handleBoxPress}>
-      <img src={icon} alt={label} style={{ width: '50px', height: '50px' }} />
+    <div
+      style={{
+        width: "260px",
+        margin: "10px",
+        padding: "8px",
+        border: "1px solid #ccc",
+        textAlign: "center",
+        borderRadius: "10px",
+        backgroundColor,
+        color: "#fff",
+        fontSize: "18px",
+        fontWeight: "bold",
+      }}
+      onClick={handleBoxPress}
+    >
+      <img src={icon} alt={label} style={{ width: "50px", height: "50px" }} />
       <p>{label}</p>
     </div>
   );
@@ -26,11 +51,12 @@ const Box = ({ label, icon, screen, id }) => {
 const Home = () => {
   const Navigate = useNavigate();
   const [, setActiveIndex] = useState(0);
+  const { userName, email, userId } = useContext(GlobalContext);
 
   const data = [
-    { image: require('../assets/Img1.png'), screen: 'Home' },
-    { image: require('../assets/Img2.png'), screen: 'Home' },
-    { image: require('../assets/Img1.png'),  screen: 'Rules' },
+    { image: require("../assets/Img1.png"), screen: "Home" },
+    { image: require("../assets/Img2.png"), screen: "Home" },
+    { image: require("../assets/Img1.png"), screen: "Rules" },
     // Add more items as needed
   ];
 
@@ -44,12 +70,42 @@ const Home = () => {
   };
 
   const boxesData = [
-    { id: 1, label: 'Registrations', icon: require('../assets/Registration.png'), screen: 'Registration' },
-    { id: 2, label: 'Important Dates', icon: require('../assets/Dates.png'), screen: 'Dates' },
-    { id: 3, label: 'Tracks', icon: require('../assets/Bullet.png'), screen: 'Tracks' },
-    { id: 4, label: 'Awards', icon: require('../assets/Prize.png'), screen: 'Awards' },
-    { id: 5, label: 'Rules & Regulations', icon: require('../assets/Rules.png'), screen: 'Rules' },
-    { id: 6, label: 'Events', icon: require('../assets/Event.png'), screen: 'Events' },
+    {
+      id: 1,
+      label: "Registrations",
+      icon: require("../assets/Registration.png"),
+      screen: "Registration",
+    },
+    {
+      id: 2,
+      label: "Important Dates",
+      icon: require("../assets/Dates.png"),
+      screen: "Dates",
+    },
+    {
+      id: 3,
+      label: "Tracks",
+      icon: require("../assets/Bullet.png"),
+      screen: "Tracks",
+    },
+    {
+      id: 4,
+      label: "Awards",
+      icon: require("../assets/Prize.png"),
+      screen: "Awards",
+    },
+    {
+      id: 5,
+      label: "Rules & Regulations",
+      icon: require("../assets/Rules.png"),
+      screen: "Rules",
+    },
+    {
+      id: 6,
+      label: "Events",
+      icon: require("../assets/Event.png"),
+      screen: "Events",
+    },
   ];
 
   return (
@@ -67,9 +123,24 @@ const Home = () => {
       </Slider>
       <div className="paginationContainer slick-dots"></div>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', marginTop: '20px', backgroundImage: 'url("/asserts/10.jpg")' }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          marginTop: "20px",
+          backgroundImage: 'url("/asserts/10.jpg")',
+        }}
+      >
         {[...Array(Math.ceil(boxesData.length / 3))].map((_, rowIndex) => (
-          <div key={rowIndex} style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+          <div
+            key={rowIndex}
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              width: "100%",
+            }}
+          >
             {boxesData.slice(rowIndex * 3, rowIndex * 3 + 3).map((box) => (
               <Box key={box.id} {...box} />
             ))}

@@ -13,7 +13,14 @@ const Main = () => {
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { setUSerName, email, setEmail, setUserId } = useContext(GlobalContext);
+  const {
+    setUSerName,
+    email,
+    setEmail,
+    setUserId,
+    loggedInUserDetails,
+    setLoggedInUserDetails,
+  } = useContext(GlobalContext);
   const Navigate = useNavigate();
 
   const resetState = () => {
@@ -26,7 +33,6 @@ const Main = () => {
     setOtpSent(false);
     setLoading(false);
   };
-
   // Define the LoadingOverlay component
   const LoadingOverlay = () => (
     <div className="loadingOverlay">
@@ -132,12 +138,11 @@ const Main = () => {
       await storeToken(response.data.token);
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", "true");
-
+      setLoggedInUserDetails(response.data);
       alert("Login successful");
       setUSerName(response.data.name);
       setEmail(response.data.email);
       setUserId(response.data.user_id);
-      
       Navigate("/Home");
     } catch (err) {
       alert("Login failed");
