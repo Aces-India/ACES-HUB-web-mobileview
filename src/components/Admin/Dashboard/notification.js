@@ -25,8 +25,38 @@ const Notification = () => {
       name: "Notification",
     },
   ];
+  async function sendPushNotification(e) {
+    e.preventDefault();
+
+    const message = {
+      to: "ExponentPushToken[8hAPIfPxtRIpd1dc2kSbwJ]",
+      sound: "default",
+      title: "Original Title",
+      body: "And here is the body!",
+      data: { someData: "goes here" },
+    };
+
+    try {
+      const response = await fetch("https://exp.host/--/api/v2/push/send", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Accept-encoding": "gzip, deflate",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      });
+
+      const result = await response.json();
+      console.log("Response from Expo push notification service:", result);
+    } catch (error) {
+      console.error("Error sending push notification:", error);
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const notification = {
       appId: 15368,
       appToken: "ux61qbAfMOOHd6vFroOD7i",
@@ -35,9 +65,9 @@ const Notification = () => {
       body: body,
       dateSent: new Date().toLocaleString(),
     };
-    axios
-      .post("https://app.nativenotify.com/api/notification", notification)
-      .then((res) => console.log(res));
+    // axios
+    //   .post("https://app.nativenotify.com/api/notification", notification)
+    //   .then((res) => console.log(res));
     setNotifyModal(false);
   };
   const closeModal = () => {
@@ -66,7 +96,7 @@ const Notification = () => {
             X
           </button>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={sendPushNotification}>
           <input
             onChange={(e) => setTitle(e.target.value)}
             className="formInput"

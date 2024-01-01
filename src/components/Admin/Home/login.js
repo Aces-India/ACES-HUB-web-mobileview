@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../../GlobalProvider";
+import Dashboard from "../Dashboard/dashboard";
 
 const Login = () => {
   const { user, setUser, setEmail, email } = useContext(GlobalContext);
@@ -51,7 +52,7 @@ const Login = () => {
       .then((response) => {
         const { token } = response.data;
         localStorage.setItem("jwtToken", token);
-        navigate("/dashboard"); 
+        navigate("/dashboard");
       })
       .catch((response) => {
         setError(response.response.data);
@@ -61,7 +62,6 @@ const Login = () => {
   return (
     <>
       <div className="formContainer">
-        
         <form className="LoginForm">
           {btn ? (
             <input
@@ -83,23 +83,18 @@ const Login = () => {
               placeholder="OTP"
             />
           )}
-          <p style={{ color: "red" }}>
-            {error && <small>{error}</small>}
-          </p>
+          <p style={{ color: "red" }}>{error && <small>{error}</small>}</p>
           <div className="formBtnContainer">
             {btn ? (
               <button
                 className="formBtn"
                 onClick={handleSubmit}
-                style={{backgroundColor:"#213966"}}
+                style={{ backgroundColor: "#213966" }}
               >
                 Login
               </button>
             ) : (
-              <button
-                className="formBtn"
-                onClick={handleVerifyChange}
-              >
+              <button className="formBtn" onClick={handleVerifyChange}>
                 Submit
               </button>
             )}
