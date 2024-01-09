@@ -6,10 +6,10 @@ import Dashboard from "../Dashboard/dashboard";
 
 const Login = () => {
   const { user, setUser, setEmail, email } = useContext(GlobalContext);
-  const [otp, setOtp] = useState();
+  const [otp, setOtp] = useState("");
   const [btn, setBtn] = useState(true);
   const [error, setError] = useState();
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,7 +43,6 @@ const Login = () => {
       email: email,
       otp: otp,
     };
-
     axios
       .post(
         "https://s-hub-backend.onrender.com/api/verifyAdminlogin",
@@ -51,8 +50,8 @@ const Login = () => {
       )
       .then((response) => {
         const { token } = response.data;
-        localStorage.setItem("jwtToken", token);
-        navigate("/dashboard");
+        localStorage.setItem("isLoggedIn", token);
+        Navigate("/dashboard");
       })
       .catch((response) => {
         setError(response.response.data);

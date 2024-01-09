@@ -8,8 +8,12 @@ import Notification from "./notification";
 const UsersData = () => {
   const [users, setUsers] = useState([]);
   const [team, setTeam] = useState([]);
-  const [display, setDisplay] = useState(true);
+  const [soloRegistration, setSoloRegistration] = useState([]);
+
+  const [display, setDisplay] = useState();
   const [teamData, setTeamData] = useState();
+  const [soloRegistrationData, setSoloRegistrationData] = useState();
+
   const [value, setValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [filterValue, setFilterValue] = useState("");
@@ -34,6 +38,18 @@ const UsersData = () => {
         console.error("Error fetching team details:", error);
       });
   };
+  const fetchSoloRegistration = () => {
+    setDisplay("soloRegistraiton");
+    axios
+      .get("https://s-hub-backend-dev.onrender.com/api/getSoloRegistrationDetails")
+      .then((res) => {
+        setSoloRegistration(res.data);
+        setFilteredUsers(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching Solo Registration details:", error);
+      });
+  };
   const downloadFile = () => {
     if ((users.length > 0) & display) {
       const dataSample = users.map((user, index) => {
@@ -52,10 +68,52 @@ const UsersData = () => {
           TeamName: user.teamName,
           teamLeaderName: user.teamLeaderName,
           teamMembers: user.teamMembers,
+          college: user.college,
+          branch: user.branch,
+          rollNumber: user.rollNumber,
+          email: user.email,
+          mobileNumber: user.mobileNumber,
+          event: user.event,
+          team_member_1: user.team_member_1,
+          team_member_1_roll_no: user.team_member_1_roll_no,
+          team_member_1_gender: user.team_member_1_gender,
+          team_member_2: user.team_member_2,
+          team_member_2_roll_no: user.team_member_2_roll_no,
+          team_member_2_gender: user.team_member_2_gender,
+          team_member_3: user.team_member_3,
+          team_member_3_roll_no: user.team_member_3_roll_no,
+          team_member_3_gender: user.team_member_3_gender,
+          team_member_4: user.team_member_4,
+          team_member_4_roll_no: user.team_member_4_roll_no,
+          team_member_4_gender: user.team_member_4_gender,
+          team_member_5: user.team_member_5,
+          team_member_5_roll_no: user.team_member_5_roll_no,
+          team_member_5_gender: user.team_member_5_gender,
+          track: user.track,
+          file_path: user.file_path,
         };
       });
 
       const xls = new XlsExport(dataSample, "Team");
+      xls.exportToXLS();
+    } else if (soloRegistration.length > 0) {
+      const dataSample = team.map((user, index) => {
+        return {
+          name: user.name,
+          RollNumber: user.rollNumber,
+          Gender: user.gender,
+          College: user.college,
+          Branch: user.branch,
+          Email: user.email,
+          mobileNumber: user.mobileNumber,
+          TeamName: user.teamName,
+          position: user.position,
+          Track: user.track,
+          File: user.file_path,
+        };
+      });
+
+      const xls = new XlsExport(dataSample, "Solo Registration");
       xls.exportToXLS();
     } else {
       alert("Fetch data to download Excel");
@@ -79,12 +137,19 @@ const UsersData = () => {
       .filter(Boolean); // Filter out null values
     setValue(team[index]);
   };
+  const handleSoloRegistration = (index) => {
+    setSoloRegistrationData(true);
+
+    setValue(soloRegistration[index]);
+  };
+
   const closeModal = () => {
     setTeamData(false);
+    setSoloRegistrationData(false);
   };
   const handleSearch = (value) => {
     setFilterValue(value);
-    if (display) {
+    if (display === true) {
       // Search for users
       const filtered = users.filter(
         (user) =>
@@ -92,12 +157,19 @@ const UsersData = () => {
       );
 
       setFilteredUsers(filtered);
-    } else {
+    } else if (display === false) {
       // Search for teams
       const filtered = team.filter(
         (user) =>
           user.teamName &&
           user.teamName.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredUsers(filtered);
+    } else {
+      // Search for teams
+      const filtered = soloRegistration.filter(
+        (user) =>
+          user.name && user.name.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredUsers(filtered);
     }
@@ -110,6 +182,9 @@ const UsersData = () => {
       </button>
       <button onClick={fetchTeams} className="userDataBtn">
         Fetch Teams
+      </button>
+      <button onClick={fetchSoloRegistration} className="userDataBtn">
+        Fetch Solo Registration
       </button>
       <Notification />
 
@@ -128,7 +203,7 @@ const UsersData = () => {
           marginRight: "10px",
         }}
       />
-      {display ? (
+      {display === true ? (
         <Scrollbars style={{ width: 1200, height: "600px" }}>
           <table className="headerKeys">
             <thead>
@@ -162,7 +237,7 @@ const UsersData = () => {
             </tbody>
           </table>
         </Scrollbars>
-      ) : (
+      ) : display === false ? (
         <Scrollbars style={{ width: 1200, height: "600px" }}>
           <div
             style={{
@@ -260,6 +335,106 @@ const UsersData = () => {
             </Modal>
           )}
         </Scrollbars>
+      ) : display === "soloRegistraiton" ? (
+        <Scrollbars style={{ width: 1200, height: "600px" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              height: "145px",
+            }}
+          >
+            {filterValue
+              ? // Display filtered teams if there's a filter value
+                filteredUsers.map((user, index) => (
+                  <div
+                    className="teambox"
+                    key={index}
+                    style={{
+                      width: "300px",
+                      height: "60px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignContent: "center",
+                      alignItems: "center",
+                      border: "1px solid black",
+                      margin: "10px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleSoloRegistration(index)}
+                  >
+                    {user.name}
+                  </div>
+                ))
+              : // Display all teams if there's no filter value
+                soloRegistration.map((user, index) => (
+                  <div
+                    className="teambox"
+                    key={index}
+                    style={{
+                      width: "300px",
+                      height: "60px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignContent: "center",
+                      alignItems: "center",
+                      border: "1px solid black",
+                      margin: "10px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleSoloRegistration(index)}
+                  >
+                    {user.name}
+                  </div>
+                ))}
+          </div>
+          {soloRegistrationData && (
+            <Modal
+              isOpen={soloRegistrationData}
+              className="teamDataModalStyles"
+              onRequestClose={closeModal}
+              ariaHideApp={false}
+            >
+              <div className="modalTitle">
+                <h4 className="modalHeader">Solo Registration Details</h4>
+                <button className="modalButton" onClick={closeModal}>
+                  X
+                </button>
+              </div>
+              <div className="modalContent">
+                <Scrollbars style={{ width: "100%", height: " 480px" }}>
+                  {Object.keys(value).map((key, index) => (
+                    <>
+                      <label
+                        style={{
+                          textTransform: "uppercase",
+                          wordSpacing: "4px",
+                          letterSpacing: "1px",
+                          fontWeight: "900",
+                        }}
+                      >
+                        {key}
+                        <br></br>
+                        <input
+                          key={index}
+                          placeholder={key}
+                          className="modalInput"
+                          value={value[key]}
+                          readOnly
+                          style={{ width: "90%" }}
+                        />
+                      </label>
+                      <br></br>
+                      <br></br>
+                    </>
+                  ))}
+                </Scrollbars>
+              </div>
+            </Modal>
+          )}
+        </Scrollbars>
+      ) : (
+        <div></div>
       )}
     </>
   );

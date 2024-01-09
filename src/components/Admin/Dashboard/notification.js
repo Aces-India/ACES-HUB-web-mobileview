@@ -27,7 +27,6 @@ const Notification = () => {
   ];
   async function sendPushNotification(e) {
     e.preventDefault();
-
     const message = {
       to: "ExponentPushToken[8hAPIfPxtRIpd1dc2kSbwJ]",
       sound: "default",
@@ -35,7 +34,6 @@ const Notification = () => {
       body: "And here is the body!",
       data: { someData: "goes here" },
     };
-
     try {
       const response = await fetch("https://exp.host/--/api/v2/push/send", {
         method: "POST",
