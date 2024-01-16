@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component, useState } from "react";
 
+
 import { Link, NavLink } from "react-router-dom";
 
 import Modal from "react-modal";
@@ -26,6 +27,7 @@ const Notification = () => {
       name: "Notification",
     },
   ];
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -45,7 +47,6 @@ const Notification = () => {
   };
   
   
-  
   const closeModal = () => {
     setNotifyModal(false);
   };
@@ -57,6 +58,8 @@ const Notification = () => {
   };
   return (
     <>
+
+      
       <button onClick={sendNotification} className="userDataBtn">
         Notification
       </button>
@@ -88,7 +91,7 @@ const Notification = () => {
           <button className="button">Send notification</button>
         </form>
       </Modal>
-    </>
+      </>
   );
 };
 export default Notification;

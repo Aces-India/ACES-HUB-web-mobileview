@@ -33,6 +33,11 @@ function App() {
         <Route path="/Blogs" element={<BlogMain />} />
         <Route path="/newBlog" element={<WriteBlog />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/notification" element={<Notification />} />
+        <Route path="/eventlist" element={<EventList />} />
+        <Route path="/create-event" element={<CreateEvent />} />
+        <Route path="/edit-event/:eventId" element={<EditEvent />} />
+        <Route path="/display-events" element={<DisplayEvents />} />
         <Route path="/Home" element={<Home />} />
         <Route exact path="/Blogs/:blog" element={<BlogMain />} />
 <Route path="/Mainregistrations" element={<Mainregistrations/>} />

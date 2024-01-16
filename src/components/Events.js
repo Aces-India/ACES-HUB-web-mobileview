@@ -86,6 +86,8 @@ function Events() {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: '90%', // Adjust the width as needed
+            maxHeight: '80vh', // Set the maximum height
+      overflowY: 'auto', // Add scroll for overflow
             backgroundColor: 'white',
             borderRadius: '20px',
             padding: '20px',

@@ -619,10 +619,8 @@ code {
   height: auto;
   margin: 30px;
 }
-.sideBar {
-  width: 200px;
+.sideBar{
   background-color: #213966;
-  height: 99vh;
 }
 .sidebarlinks {
   align-items: center;
@@ -636,7 +634,7 @@ code {
 .dashboardContent {
   
   background-color: rgb(255, 255, 255);
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   height: 94vh;
   width: 1280px;
