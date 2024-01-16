@@ -10,6 +10,10 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("user_name");
+    localStorage.removeItem("user_email");
+
 
     navigate("/");
   };

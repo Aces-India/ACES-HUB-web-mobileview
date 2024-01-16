@@ -6,7 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-image: url(../src/assets/12.jpg); */
-  background-color: #ececec;
+  background-color: #f4f4f8;
+
 }
 
 code {
@@ -556,9 +557,9 @@ code {
   color: #fff;
 }
 
-input[type="file"] {
+/* input[type="file"] {
   display: none;
-}
+} */
 .body {
   box-sizing: border-box;
   padding: 0;
@@ -633,7 +634,7 @@ input[type="file"] {
   height: 95vh;
 }
 .dashboardContent {
-  display: flex;
+  
   background-color: rgb(255, 255, 255);
   flex-direction: row;
   justify-content: space-between;
@@ -874,21 +875,29 @@ select {
 
 /* Add this to your existing CSS file */
 
-.topSection {
+.topSection{
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
 }
-
-.roleSelector {
-  color: #ffff;
-  margin-top: 30px;
-  margin-left: 80px;
+.login-roleSelector{
+  display: flex;
+  flex-direction: row;
+  
+  color: #f4f4f8;
+}
+.roleSelector{
+  display: flex;
+  flex-direction: row;
+  margin-left: 350px;
+  background-color: #f4f4f8;
+}
+.Rinput {
+  padding: 8px;
+  width: 200px;
+}
+.RTopSection{
   align-items: center;
-
-  margin-bottom: -15px;
+  background-color: #f4f4f8;
 }
-
 .login-label {
   margin-right: 10px;
 }
@@ -976,4 +985,214 @@ nav a.active::after {
 .logo-container {
   display: flex;
   align-items: center;
+}
+
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+
+.event-list-content {
+  flex-grow: 1;
+  padding: 20px; /* Adjust padding as needed */
+  /* additional styling for content area */
+}
+.create-event-content {
+padding-left: 50px; /* Adjust this value as needed */
+}
+/* EventForm.css */
+.event-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+}
+
+.event-form input, .event-form select {
+  width: 200px;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.event-form button {
+  padding: 10px 20px;
+  margin-top: 0px;
+  background-color: #213966;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.event-form button:hover {
+  background-color: #45a049;
+}
+/* EventList.css */
+.event-list {
+  margin: 20px;
+}
+
+.event-item {
+  margin-bottom: 15px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width:500px;
+}
+
+.event-item button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.event-item button:hover {
+  background-color: #d32f2f;
+}
+
+.event-item button.edit-btn {
+  background-color: #2196F3;
+}
+
+.event-item button.edit-btn:hover {
+  background-color: #1976D2;
+}
+
+
+.displayEventsContainer {
+  margin: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.eventItem {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.eventItem:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.eventTitle {
+  color: #333;
+  font-size: 1.4em;
+  margin-bottom: 8px;
+}
+
+.eventDate {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.eventDescription {
+  color: #666;
+  margin-bottom: 10px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.eventImage {
+  width: 180px; /* Adjust the size as needed */
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 0px;
+}
+
+.editLink, .deleteButton {
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  display: inline-block;
+  margin-right: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  margin-left: 15px;
+}
+
+.editLink {
+  background-color: #007BFF;
+  color: white;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.editLink:hover {
+  background-color: #0056b3;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+
+.sortButton {
+  background-color: #213966;
+  color: white;
+  padding: 8px 16px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sortButton:hover {
+  background-color: #218838;
+}
+
+/* Event Form Styles */
+.eventFormContainer {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 90px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.eventFormInput,
+.eventFormTextArea,
+.eventFormSelect,
+.eventFormFileInput {
+  width: 100%;
+
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.eventFormSubmitButton {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+  background-color: #213966;
+  color: white;
+  cursor: pointer;
+}
+
+.eventFormSubmitButton:hover {
+  background-color: #45a049;
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GlobalContext } from "../GlobalProvider";
 import "../index.css";
+import Api from "../api";
 
 const Main = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -68,12 +69,12 @@ const Main = () => {
     setLoading(true);
     try {
       if (isLogin) {
-        await axios.post("https://s-hub-backend.onrender.com/api/login", {
+        await Api.post("login", {
           email,
         });
       } else {
-        await axios.post(
-          "https://s-hub-backend.onrender.com/api/registeruser",
+        await Api.post(
+          "registeruser",
           { name, email, phone }
         );
       }
@@ -97,8 +98,8 @@ const Main = () => {
 
   const verifyOtpAndRegister = async () => {
     try {
-      const response = await axios.post(
-        "https://s-hub-backend.onrender.com/api/verify-register",
+      const response = await Api.post(
+        "verify-register",
         {
           email,
           otp,
@@ -128,26 +129,45 @@ const Main = () => {
 
   const verifyOtpAndLogin = async () => {
     try {
-      const response = await axios.post(
-        "https://s-hub-backend.onrender.com/api/verify-login",
+      const response = await Api.post(
+        "verify-login",
         {
           email,
           otp,
         }
       );
+  
+      // Store user details in localStorage
+      localStorage.setItem("user_id", response.data.user_id);
+  
+      // Store token in localStorage
       await storeToken(response.data.token);
+  
+      // Update state
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", "true");
       setLoggedInUserDetails(response.data);
-      alert("Login successful");
       setUSerName(response.data.name);
       setEmail(response.data.email);
       setUserId(response.data.user_id);
+
+      try {
+        // Your AsyncStorage code can be replaced with browser's localStorage or any other suitable web storage mechanism
+        localStorage.setItem("user_id", response.data.user_id);
+        localStorage.setItem("user_name", response.data.name);
+        localStorage.setItem("user_email", response.data.email);
+        
+      } catch (e) {
+        console.error("Error saving token", e);
+      }
+
+      alert("Login successful");
       Navigate("/Home");
     } catch (err) {
       alert("Login failed");
     }
   };
+  
 
   return (
     <div>

@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { Component, useState } from "react";
-import b from "../../../assets/b.png";
+
 import { Link, NavLink } from "react-router-dom";
 
 import Modal from "react-modal";
+import Api from "../../../api";
 
 const Notification = () => {
   const [notifyModal, setNotifyModal] = useState();
@@ -25,49 +26,26 @@ const Notification = () => {
       name: "Notification",
     },
   ];
-  async function sendPushNotification(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const message = {
-      to: "ExponentPushToken[8hAPIfPxtRIpd1dc2kSbwJ]",
-      sound: "default",
-      title: "Original Title",
-      body: "And here is the body!",
-      data: { someData: "goes here" },
-    };
+  
+    const notificationDate = new Date(); // Current date and time
+  
     try {
-      const response = await fetch("https://exp.host/--/api/v2/push/send", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Accept-encoding": "gzip, deflate",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(message),
+      await Api.post('send-notifications', {
+        title,
+        body,
+        date: notificationDate // Send date with the request
       });
-
-      const result = await response.json();
-      console.log("Response from Expo push notification service:", result);
+      console.log('Notification request sent to the server');
+      setNotifyModal(false);
     } catch (error) {
-      console.error("Error sending push notification:", error);
+      console.error('Error sending notification request:', error);
     }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const notification = {
-      appId: 15368,
-      appToken: "ux61qbAfMOOHd6vFroOD7i",
-      image: b,
-      title: title,
-      body: body,
-      dateSent: new Date().toLocaleString(),
-    };
-    // axios
-    //   .post("https://app.nativenotify.com/api/notification", notification)
-    //   .then((res) => console.log(res));
-    setNotifyModal(false);
   };
+  
+  
+  
   const closeModal = () => {
     setNotifyModal(false);
   };
@@ -79,7 +57,7 @@ const Notification = () => {
   };
   return (
     <>
-      <button onClick={sendNotification} className="button">
+      <button onClick={sendNotification} className="userDataBtn">
         Notification
       </button>
       <Modal
@@ -94,7 +72,7 @@ const Notification = () => {
             X
           </button>
         </div>
-        <form onSubmit={sendPushNotification}>
+        <form onSubmit={handleSubmit}>
           <input
             onChange={(e) => setTitle(e.target.value)}
             className="formInput"

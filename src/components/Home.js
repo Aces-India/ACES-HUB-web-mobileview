@@ -74,38 +74,22 @@ const Home = () => {
       id: 1,
       label: "Registrations",
       icon: require("../assets/Registration.png"),
-      screen: "Registration",
+      screen: "Mainregistrations",
     },
-    {
-      id: 2,
-      label: "Important Dates",
-      icon: require("../assets/Dates.png"),
-      screen: "Dates",
-    },
-    {
-      id: 3,
-      label: "Tracks",
-      icon: require("../assets/Bullet.png"),
-      screen: "Tracks",
-    },
-    {
-      id: 4,
-      label: "Awards",
-      icon: require("../assets/Prize.png"),
-      screen: "Awards",
-    },
-    {
-      id: 5,
-      label: "Rules & Regulations",
-      icon: require("../assets/Rules.png"),
-      screen: "Rules",
-    },
+    
     {
       id: 6,
       label: "Events",
       icon: require("../assets/Event.png"),
       screen: "Events",
     },
+    {
+      id: 4,
+      label: "Notifications",
+      icon: require("../assets/notification.png"),
+      screen: "Notifications",
+    },
+
   ];
 
   return (

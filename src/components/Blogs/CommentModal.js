@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../GlobalProvider";
 import Modal from "react-modal";
 import axios from "axios";
+import Api from "../../api";
 const CommentModal = () => {
   const { commentModal, setCommentModal, setTitle, setBody, comments } =
     useContext(GlobalContext);
@@ -10,15 +11,11 @@ const CommentModal = () => {
 
     console.log("first");
     const commentData = {
-      user_id: "655dabbcda0cc1b16e49b0bf",
+      user_id: "userId",
       comnt_msg: "test ccomment by same",
       user_email: "mser.dev@gmail.com",
     };
-    axios
-      .post(
-        "https://s-hub-backend.onrender.com/api/post/65775caad4405493f62699c0/comment",
-        commentData
-      )
+    Api.post("post/65775caad4405493f62699c0/comment", commentData)
       .then((res) => console.log(res.data));
   };
   const closeModal = () => {

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../../GlobalProvider";
 import Dashboard from "../Dashboard/dashboard";
+import Api from "../../../api";
 
 const Login = () => {
   const { user, setUser, setEmail, email } = useContext(GlobalContext);
@@ -17,8 +18,8 @@ const Login = () => {
       email: user.email,
     };
 
-    axios
-      .post("https://s-hub-backend.onrender.com/api/Adminlogin", userData)
+    Api
+      .post("Adminlogin", userData)
       .then((response) => {
         setEmail(response.data.email);
         setBtn(false);
@@ -43,9 +44,9 @@ const Login = () => {
       email: email,
       otp: otp,
     };
-    axios
+    Api
       .post(
-        "https://s-hub-backend.onrender.com/api/verifyAdminlogin",
+        "verifyAdminlogin",
         userDetails
       )
       .then((response) => {

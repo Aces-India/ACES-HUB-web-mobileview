@@ -8,7 +8,7 @@ import Blogdisplay from "./Blogdisplay";
 const BlogMain = () => {
   const { blogpageView, setBlogPageView } = useContext(GlobalContext);
   return (
-    <>
+    <div style={{backgroundColor:"#f4f4f8"}}>
       <Header />
       <div className="BlogMain">
         <UserDetails />
@@ -22,7 +22,7 @@ const BlogMain = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default BlogMain;
