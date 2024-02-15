@@ -3,14 +3,14 @@ import React from 'react';
 import EventForm from './EventForm';
 import "../../../../index.css";
 import Sidebar from '../Sidebar';
+import Api from '../../../../api'; // Update the path based on your project structure
+
 const CreateEvent = () => {
     const saveEvent = (formData) => {
-        fetch('https://s-hub-backend.onrender.com/api/eventDetail', {
-            method: 'POST',
-            body: formData,
-        }).then(response => response.json())
-          .then(data => console.log(data))
-          .catch(error => console.error('Error:', error));
+        Api.post('eventDetail', formData)
+            .then(response => response.data)
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
     };
 
     return (

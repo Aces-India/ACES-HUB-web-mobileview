@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../GlobalProvider";
 import { FaRegUserCircle } from "react-icons/fa";
 import axios from "axios";
-
+import Api from "../../api";
 const Blogdisplay = ({ post }) => {
   const {
     title,
@@ -15,34 +15,42 @@ const Blogdisplay = ({ post }) => {
   } = useContext(GlobalContext);
   const [commentText, setCommentText] = useState();
   const postComment = () => {
+    if (!postDisplay || !postDisplay.post_id) {
+      console.error("Post ID not found");
+      
+
+      return;
+    }
     const obj = {
-      user_id: userId,
+      user_id: localStorage.getItem('user_id'),
       comnt_msg: commentText,
     };
-    axios
+    Api
       .post(
-        `https://s-hub-backend.onrender.com/api/post/${postDisplay?.post_id}/comment`,
+        `post/${postDisplay?.post_id}/comment`,
         obj
       )
       .then((res) => {
         alert("Comment Successfully");
         setCommentText("");
+        console.log(res);
       });
   };
 
   useEffect(() => {
     // Fetch comments whenever the component mounts or commentText changes
-    axios
-      .get(
-        `https://s-hub-backend.onrender.com/api/post/${postDisplay.post_id}/comment`
-      )
-      .then((res) => {
-        setComments(res.data.reverse());
-      })
-      .catch((error) => {
-        console.error("Error fetching comments:", error);
-      });
-  }, [commentText, postDisplay.post_id]);
+    if (postDisplay && postDisplay.post_id) {
+      Api
+        .get(`post/${postDisplay.post_id}/comment`)
+        .then((res) => {
+          setComments(res.data.reverse());
+        })
+        .catch((error) => {
+          console.error("Error fetching comments:", error);
+        });
+    }
+  }, [commentText, postDisplay?.post_id]);
+  
   return (
     <>
       <div
@@ -55,6 +63,7 @@ const Blogdisplay = ({ post }) => {
           marginTop: "5px",
           justifyContent: "flex-start",
           padding: "10px",
+          background: "white",
         }}
       >
         <h1 style={{ fontSize: "30px", fontWeight: "bolder" }}>
@@ -67,6 +76,8 @@ const Blogdisplay = ({ post }) => {
             lineBreak: "normal",
             wordSpacing: "6px",
             lineHeight: "35px",
+            
+            
           }}
         >
           {postDisplay?.post_msg}
@@ -127,7 +138,7 @@ const Blogdisplay = ({ post }) => {
               height: "30px",
               width: "10%",
               color: "#fff",
-              background: "#007acc",
+              background: "#213966",
               marginLeft: "60px",
               cursor: "pointer",
             }}
@@ -161,7 +172,7 @@ const Blogdisplay = ({ post }) => {
 
                   <div
                     style={{
-                      background: "#b3b3cc",
+                      background: "#fff",
                       width: "100%",
                       border: "2px solid black",
                       margin: "10px",
@@ -177,6 +188,7 @@ const Blogdisplay = ({ post }) => {
                       padding: "8px",
                     }}
                   >
+                  
                     <div
                       style={
                         {
@@ -207,4 +219,6 @@ const Blogdisplay = ({ post }) => {
     </>
   );
 };
+
+
 export default Blogdisplay;

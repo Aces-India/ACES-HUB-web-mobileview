@@ -2,28 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../../../../index.css";
 import Sidebar from '../Sidebar';
+import Api from '../../../../api';
 
 const DisplayEvents = () => {
     const [events, setEvents] = useState([]);
     const [sortOrder, setSortOrder] = useState('ascending'); // State to track sort order
-
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     useEffect(() => {
-        fetch('https://s-hub-backend.onrender.com/api/eventDetails')
-            .then(response => response.json())
-            .then(data => setEvents(data))
-            .catch(error => console.error('Error fetching events:', error));
+        Api.get('eventDetails')
+         
+            .then(response => {
+                setEvents(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching events:', error);
+                setError('Error fetching events. Please try again.');
+                setLoading(false);
+            });
     }, []);
 
     const deleteEvent = (eventId) => {
         console.log('Deleting Event with ID:', eventId);
-        fetch(`https://s-hub-backend.onrender.com/api/eventDetail/${eventId}`, {
-            method: 'DELETE',
-        }).then(response => response.json())
-          .then(() => {
-            setEvents(events.filter(event => event._id !== eventId));
-          })
-          .catch(error => console.error('Error:', error));
+        Api.delete(`eventDetail/${eventId}`)
+            .then(() => {
+                setEvents(events.filter(event => event._id !== eventId));
+            })
+            .catch(error => console.error('Error:', error));
     };
+
     const sortEvents = () => {
         const sortedEvents = [...events].sort((a, b) => {
             const dateA = new Date(a.date);

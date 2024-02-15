@@ -18,13 +18,14 @@ const Main = () => {
         <div className="logoContainer">
           <img src={companyLogo} alt="Logo" className="logo" />
         </div>
-        <div className="roleSelector">
+        <div className="login-roleSelector">
           <label>
             <input
               type="radio"
               value="student"
               checked={role === 'student'}
               onChange={() => setRole('student')}
+              
             />
             Student
           </label>

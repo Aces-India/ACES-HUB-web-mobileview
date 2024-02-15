@@ -4,6 +4,7 @@ import XlsExport from "xlsexport";
 import Modal from "react-modal";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import Notification from "./notification";
+import Api from "../../../api";
 
 const UsersData = () => {
   const [users, setUsers] = useState([]);
@@ -20,16 +21,16 @@ const UsersData = () => {
 
   const fetchUsers = () => {
     setDisplay(true);
-    axios
-      .get("https://s-hub-backend.onrender.com/api/getUsers")
+    Api
+      .get("getUsers")
       .then((res) => setUsers(res.data));
   };
 
   const fetchTeams = () => {
     setDisplay(false);
 
-    axios
-      .get("https://s-hub-backend.onrender.com/api/getTeamDetails")
+    Api
+      .get("getTeamDetails")
       .then((res) => {
         setTeam(res.data);
         setFilteredUsers(res.data);
@@ -40,8 +41,8 @@ const UsersData = () => {
   };
   const fetchSoloRegistration = () => {
     setDisplay("soloRegistraiton");
-    axios
-      .get("https://s-hub-backend-dev.onrender.com/api/getSoloRegistrationDetails")
+    Api
+      .get("getSoloRegistrationDetails")
       .then((res) => {
         setSoloRegistration(res.data);
         setFilteredUsers(res.data);
@@ -439,4 +440,4 @@ const UsersData = () => {
     </>
   );
 };
-export default UsersData;
+export default UsersData;

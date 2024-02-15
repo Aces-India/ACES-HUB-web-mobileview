@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { Component, useState } from "react";
 
+
 import { Link, NavLink } from "react-router-dom";
 
 import Modal from "react-modal";
+import Api from "../../../api";
 
 const Notification = () => {
   const [notifyModal, setNotifyModal] = useState();
@@ -25,13 +27,14 @@ const Notification = () => {
       name: "Notification",
     },
   ];
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     const notificationDate = new Date(); // Current date and time
   
     try {
-      await axios.post('https://s-hub-backend.onrender.com/api/send-notifications', {
+      await Api.post('send-notifications', {
         title,
         body,
         date: notificationDate // Send date with the request
@@ -42,7 +45,6 @@ const Notification = () => {
       console.error('Error sending notification request:', error);
     }
   };
-  
   
   
   const closeModal = () => {
@@ -56,6 +58,8 @@ const Notification = () => {
   };
   return (
     <>
+
+      
       <button onClick={sendNotification} className="userDataBtn">
         Notification
       </button>
@@ -87,7 +91,7 @@ const Notification = () => {
           <button className="button">Send notification</button>
         </form>
       </Modal>
-    </>
+      </>
   );
 };
 export default Notification;

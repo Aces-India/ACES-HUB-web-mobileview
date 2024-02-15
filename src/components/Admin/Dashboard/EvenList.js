@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import EventForm from './EventForm';
 import '../../../index.css';
 import Sidebar from './Sidebar';
+import Api from '../../../api';
 
 const EventList = () => {
     const [events, setEvents] = useState([]);
@@ -15,7 +16,7 @@ const EventList = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await axios.get('https://s-hub-backend.onrender.com/api/events');
+            const response = await Api.get('events');
             setEvents(response.data);
         } catch (error) {
             console.error('Error fetching events:', error);
@@ -24,7 +25,7 @@ const EventList = () => {
 
     const handleDelete = async (eventId) => {
         try {
-            await axios.delete(`https://s-hub-backend.onrender.com/api/events/${eventId}`);
+            await Api.delete(`events/${eventId}`);
             fetchEvents();
         } catch (error) {
             console.error('Error deleting event:', error);

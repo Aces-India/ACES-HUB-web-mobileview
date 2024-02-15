@@ -2,34 +2,35 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../../index.css';
+import Api from '../../../api';
 
 const EventForm = ({ event = { _id: null, name: '', eventPeriod: '' }, onEventSaved }) => {
-    const [name, setName] = useState('');
-    const [eventPeriod, setEventPeriod] = useState('');
-  
-    useEffect(() => {
+  const [name, setName] = useState('');
+  const [eventPeriod, setEventPeriod] = useState('');
+
+  useEffect(() => {
       if (event && event._id) {
-        setName(event.name);
-        setEventPeriod(event.eventPeriod);
+          setName(event.name);
+          setEventPeriod(event.eventPeriod);
       }
-    }, [event]);
-  
-    const handleSubmit = async (e) => {
+  }, [event]);
+
+  const handleSubmit = async (e) => {
       e.preventDefault();
-      const endpoint = event._id ? `https://s-hub-backend.onrender.com/api/events/${event._id}` : 'https://s-hub-backend.onrender.com/api/events';
+      const endpoint = event._id ? `events/${event._id}` : 'events';
       const method = event._id ? 'put' : 'post';
-  
+
       try {
-        await axios[method](endpoint, { name, eventPeriod });
-        onEventSaved();
-        if (!event._id) {
-          setName('');
-          setEventPeriod('');
-        }
+          await Api[method](endpoint, { name, eventPeriod });
+          onEventSaved();
+          if (!event._id) {
+              setName('');
+              setEventPeriod('');
+          }
       } catch (error) {
-        console.error('Error managing event:', error);
+          console.error('Error managing event:', error);
       }
-    };
+  };
   
     return (
       <form onSubmit={handleSubmit} className="event-form">

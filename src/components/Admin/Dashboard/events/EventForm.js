@@ -64,6 +64,7 @@ const EventForm = ({ event = {}, onSave }) => {
                     onChange={e => setImage(e.target.files[0])}
                     className="eventFormFileInput"
                 />
+                
                 <button type="submit" className="eventFormSubmitButton">Submit</button>
             </form>
         </div>

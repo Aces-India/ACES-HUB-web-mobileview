@@ -6,7 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-image: url(../src/assets/12.jpg); */
-  background-color: #ececec;
+  background-color: #f4f4f8;
+
 }
 
 code {
@@ -556,7 +557,9 @@ code {
   color: #fff;
 }
 
-
+input[type="file"] {
+  display: none;
+}
 .body {
   box-sizing: border-box;
   padding: 0;
@@ -616,7 +619,9 @@ code {
   height: auto;
   margin: 30px;
 }
-
+.sideBar{
+  background-color: #213966;
+}
 .sidebarlinks {
   align-items: center;
   margin-top: 10px;
@@ -868,21 +873,29 @@ select {
 
 /* Add this to your existing CSS file */
 
-.topSection {
+.topSection{
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
 }
-
-.roleSelector {
-  color: #ffff;
-  margin-top: 30px;
-  margin-left: 80px;
+.login-roleSelector{
+  display: flex;
+  flex-direction: row;
+  
+  color: #f4f4f8;
+}
+.roleSelector{
+  display: flex;
+  flex-direction: row;
+  margin-left: 350px;
+  background-color: #f4f4f8;
+}
+.Rinput {
+  padding: 8px;
+  width: 200px;
+}
+.RTopSection{
   align-items: center;
-
-  margin-bottom: -15px;
+  background-color: #f4f4f8;
 }
-
 .login-label {
   margin-right: 10px;
 }
@@ -970,6 +983,22 @@ nav a.active::after {
 .logo-container {
   display: flex;
   align-items: center;
+}
+
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+
+.event-list-content {
+  flex-grow: 1;
+  padding: 20px; /* Adjust padding as needed */
+  /* additional styling for content area */
+}
+.create-event-content {
+padding-left: 50px; /* Adjust this value as needed */
 }
 /* EventForm.css */
 .event-form {
@@ -1145,6 +1174,7 @@ nav a.active::after {
 .eventFormSelect,
 .eventFormFileInput {
   width: 100%;
+
   padding: 10px;
   margin: 10px 0;
   border-radius: 4px;
@@ -1163,37 +1193,4 @@ nav a.active::after {
 
 .eventFormSubmitButton:hover {
   background-color: #45a049;
-}
-
-.dashboard {
-    display: flex;
-    min-height: 100vh;
-}
-
-.sideBar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  background-color: #213966;
-  position: sticky; /* Add this line */
-  top: 0; /* And this one */
-}
-.sideBar button { 
-  width: 100%; 
-  cursor: pointer;
-  color: white;
-  transition: all 0.1s;
-  background: #213966;
-  border: none; 
-  padding: 10px 0; 
-}
-.event-list-content {
-    flex-grow: 1;
-    padding: 20px; /* Adjust padding as needed */
-    /* additional styling for content area */
-}
-.create-event-content {
-  padding-left: 50px; /* Adjust this value as needed */
-  /* other styles */
 }

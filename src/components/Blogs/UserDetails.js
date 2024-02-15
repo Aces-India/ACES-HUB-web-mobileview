@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../GlobalProvider";
 import { FaUserAlt } from "react-icons/fa";
 import axios from "axios";
+import Api from "../../api";
 
 const UserDetails = () => {
   const {
@@ -15,12 +16,19 @@ const UserDetails = () => {
     setSelectedImage,
     textareaValue,
     setTextareaValue,
+    userId,
+
   } = useContext(GlobalContext);
   let navigate = useNavigate();
   const handlePostPage = () => {
     setBlogPageView(false);
-    axios.get("https://s-hub-backend.onrender.com/api/post").then((res) => {
-      setPosts(res.data.posts);
+    Api.get("https://s-hub-backend-dev.onrender.com/api/post",
+    {headers: { 'user-id': localStorage.getItem('user_id') }}
+    ).then((res) => {
+
+      console.log(res.data.blogs)
+
+      setPosts(res.data.blogs);
     });
   };
   return (
@@ -52,7 +60,7 @@ const UserDetails = () => {
           }}
         >
           <FaUserAlt />
-          {userName}
+          {localStorage.getItem('user_name')}
         </div>
         <p
           onClick={handlePostPage}
