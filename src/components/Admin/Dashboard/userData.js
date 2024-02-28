@@ -104,6 +104,7 @@ const UsersData = () => {
           RollNumber: user.rollNumber,
           Gender: user.gender,
           College: user.college,
+          event: user.event,
           Branch: user.branch,
           Email: user.email,
           mobileNumber: user.mobileNumber,
