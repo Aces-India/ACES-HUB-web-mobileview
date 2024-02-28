@@ -557,9 +557,9 @@ code {
   color: #fff;
 }
 
-input[type="file"] {
+/* input[type="file"] {
   display: none;
-}
+} */
 .body {
   box-sizing: border-box;
   padding: 0;
