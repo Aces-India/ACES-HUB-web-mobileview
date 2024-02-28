@@ -45,12 +45,13 @@ const UsersData = () => {
       .get("getSoloRegistrationDetails")
       .then((res) => {
         setSoloRegistration(res.data);
-        setFilteredUsers(res.data);
+        setFilteredUsers(res.data); // Ensure this is updated to reflect the latest data
       })
       .catch((error) => {
         console.error("Error fetching Solo Registration details:", error);
       });
-  };
+};
+
   const downloadFile = () => {
     if ((users.length > 0) & display) {
       const dataSample = users.map((user, index) => {
@@ -97,19 +98,19 @@ const UsersData = () => {
 
       const xls = new XlsExport(dataSample, "Team");
       xls.exportToXLS();
-    } else if (soloRegistration.length > 0) {
-      const dataSample = team.map((user, index) => {
+    }  else if (soloRegistration.length > 0 && display === "soloRegistraiton") {
+      const dataSample = soloRegistration.map((user, index) => {
         return {
           name: user.name,
           RollNumber: user.rollNumber,
           Gender: user.gender,
           College: user.college,
-          event: user.event,
+          Event: user.event,
           Branch: user.branch,
           Email: user.email,
-          mobileNumber: user.mobileNumber,
+          MobileNumber: user.mobileNumber,
           TeamName: user.teamName,
-          position: user.position,
+          Position: user.position,
           Track: user.track,
           File: user.file_path,
         };
@@ -120,7 +121,7 @@ const UsersData = () => {
     } else {
       alert("Fetch data to download Excel");
     }
-  };
+};
   const handleTeam = (index) => {
     setTeamData(true);
     const dataSample = team
